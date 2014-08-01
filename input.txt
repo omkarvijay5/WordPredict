@@ -1,0 +1,10 @@
+LEARN This is a cat
+PREDICT This
+LEARN This was on the table
+LEARN This was in the hall
+PREDICT This
+PREDICT is
+PREDICT cat
+LEARN Cat is a nice pet
+PREDICT cat
+PREDICT is
