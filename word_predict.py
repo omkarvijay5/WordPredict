@@ -13,8 +13,17 @@ class WordPredict():
 
     def learn(self, sentence):
         for word in sentence:
-            next_word = self.get_next_word(sentence, word)
-            
+            if word in self.memory:
+                next_word = self.get_next_word(sentence, word)
+                if next_word in self.memory[word].keys():
+                    self.memory[word][next_word] += 1
+                else:
+                    self.memory[word][next_word] = 1
+            else:
+                next_word = self.get_next_word(sentence, word)
+                self.memory[word] = {next_word: 1}
+        print "learned a new sentence"
+
     def predict(self, word):
         pass
 
@@ -31,4 +40,3 @@ if __name__ == '__main__':
             predict = getattr(word_predict, method)
             word = ' '.join(line.split()[1:])
             predict(word)
-
