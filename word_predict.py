@@ -5,13 +5,16 @@ class WordPredict():
     
     def get_next_word(self, sentence, word):
         next_word_index = sentence.index(word) + 1
-        next_word = sentence[next_word_index]
+        if len(sentence) == next_word_index:
+            next_word = None
+        else:
+            next_word = sentence[next_word_index]
         return next_word
 
     def learn(self, sentence):
         for word in sentence:
-            next_word = slef.get_next_word(sentence, word)
-
+            next_word = self.get_next_word(sentence, word)
+            
     def predict(self, word):
         pass
 
