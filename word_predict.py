@@ -2,7 +2,7 @@ class WordPredict():
 
     def __init__(self):
         self.memory = {}
-    
+
     def get_next_word(self, sentence, word):
         next_word_index = sentence.index(word) + 1
         if len(sentence) == next_word_index:
