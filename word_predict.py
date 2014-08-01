@@ -12,27 +12,34 @@ class WordPredict():
         return next_word
 
     def learn(self, sentence):
-        for word in sentence:
-            if word in self.memory:
-                next_word = self.get_next_word(sentence, word)
-                if next_word in self.memory[word].keys():
-                    self.memory[word][next_word] += 1
+        temp_sentence = [w.lower() for w in sentence]
+        for word in temp_sentence:
+            temp_word = word.lower()
+            if temp_word in self.memory:
+                next_word = self.get_next_word(temp_sentence, temp_word)
+                if next_word in self.memory[temp_word].keys():
+                    self.memory[temp_word][next_word] += 1
                 else:
-                    self.memory[word][next_word] = 1
+                    self.memory[temp_word][next_word] = 1
             else:
-                next_word = self.get_next_word(sentence, word)
-                self.memory[word] = {next_word: 1}
+                next_word = self.get_next_word(temp_sentence, temp_word)
+                self.memory[temp_word] = {next_word: 1}
         print "learned a new sentence"
 
     def predict(self, word):
-        pass
+        temp_word = word.lower()
+        dictionary = self.memory[temp_word]
+        next_word = max(dictionary)
+        if next_word == None:
+            next_word = ''
+        print "{0} : {1}".format(word, next_word)
 
 if __name__ == '__main__':
     word_predict = WordPredict()
     input_file = open('input.txt')
     for line in input_file.readlines():
         method = line.split()[0].lower()
-        sentence = line.strip().split()[1:]
+        sentence = line.split()[1:]
         if method == 'learn':
             learn = getattr(word_predict, method)
             learn(sentence)
