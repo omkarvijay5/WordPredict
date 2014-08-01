@@ -1,10 +1,12 @@
 class WordPredict():
 
+    def __init__(self):
+        self.memory = {}
+
     def learn(self, sentence):
         pass
 
     def predict(self, word):
-        print "i am in predict", word
         pass
 
 if __name__ == '__main__':
