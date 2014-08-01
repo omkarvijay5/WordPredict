@@ -4,6 +4,7 @@ class WordPredict():
         pass
 
     def predict(self, word):
+        print "i am in predict", word
         pass
 
 if __name__ == '__main__':
@@ -15,4 +16,8 @@ if __name__ == '__main__':
         if method == 'learn':
             learn = getattr(word_predict, method)
             learn(sentence)
+        elif method == 'predict':
+            predict = getattr(word_predict, method)
+            word = ' '.join(line.split()[1:])
+            predict(word)
 
