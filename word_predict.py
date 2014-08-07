@@ -1,3 +1,5 @@
+import re
+
 class WordPredict():
 
     def __init__(self):
@@ -40,6 +42,7 @@ if __name__ == '__main__':
     for line in input_file.readlines():
         method = line.split()[0].lower()
         sentence = line.split()[1:]
+        sentence = re.sub('[!,.]', '', sentence)
         if method == 'learn':
             learn = getattr(word_predict, method)
             learn(sentence)
